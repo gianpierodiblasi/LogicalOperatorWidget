@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities>
+  <ExtensionPackages>
+    <ExtensionPackage 
+      name="LogicalOperatorWidget"
+      packageVersion="1.0.0"
+      vendor="Gianpiero Di Blasi"
+      description="Extension to perform logical operations"
+      minimumThingWorxVersion="8.3.0"
+      dependsOn=""> 
+    </ExtensionPackage>
+  </ExtensionPackages>
+  
+  <Widgets>
+    <Widget name="logicaloperator">
+      <UIResources>
+        <FileResource description="" file="logicaloperator.ide.js" isDevelopment="true" isRuntime="false" type="JS"/>
+        <FileResource description="" file="logicaloperator.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
+        <FileResource description="" file="logicaloperator.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
+        <FileResource description="" file="logicaloperator.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
+      </UIResources>
+    </Widget>
+  </Widgets>
+</Entities>
