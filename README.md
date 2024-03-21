@@ -12,7 +12,7 @@ This extension provides a widget to perform logical operations.
 - numberOfOperands - INTEGER (default = 2): The operands number
 - operand, operand1, ..., operand\<numberOfOperands\> - BOOLEAN (no default value): dynamic properties based on the value of operation and numberOfOperands, they are the operands
 - output - BOOLEAN (default = false): The output
-
+- autoEvaluate - BOOLEAN (default = false): true to automatically evaluate output when a new operand value is set
 ## Services
 - Evaluate: service to execute the operation
 

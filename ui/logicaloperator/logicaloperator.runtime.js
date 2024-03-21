@@ -74,6 +74,10 @@ TW.Runtime.Widgets.logicaloperator = function () {
   this.updateProperty = function (updatePropertyInfo) {
     if (updatePropertyInfo.TargetProperty.startsWith("operand")) {
       this.setProperty(updatePropertyInfo.TargetProperty, updatePropertyInfo.RawSinglePropertyValue);
+
+      if (thisWidget.getProperty("autoEvaluate")) {
+        this.serviceInvoked("Evaluate");
+      }
     }
   };
 };

@@ -46,6 +46,13 @@ TW.IDE.Widgets.logicaloperator = function () {
           'isEditable': true,
           'defaultValue': false,
           'description': 'true to activate the debug'
+        },
+        'autoEvaluate': {
+          'isVisible': true,
+          'baseType': 'BOOLEAN',
+          'isEditable': true,
+          'defaultValue': false,
+          'description': 'true to automatically evaluate output when a new operand value is set'
         }
       }
     };
