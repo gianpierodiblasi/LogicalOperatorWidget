@@ -25,7 +25,11 @@ TW.IDE.Widgets.logicaloperator = function () {
           'defaultValue': 'OR',
           'selectOptions': [
             {value: 'OR', text: 'OR'},
+            {value: 'NOR', text: 'NOR'},
             {value: 'AND', text: 'AND'},
+            {value: 'NAND', text: 'NAND'},
+            {value: 'XOR', text: 'XOR'},
+            {value: 'NXOR', text: 'NXOR'},
             {value: 'NOT', text: 'NOT'}
           ]
         },

@@ -3,7 +3,7 @@
   <ExtensionPackages>
     <ExtensionPackage 
       name="LogicalOperatorWidget"
-      packageVersion="1.1.0"
+      packageVersion="1.2.1"
       vendor="Gianpiero Di Blasi"
       description="Extension to perform logical operations"
       minimumThingWorxVersion="8.3.0"

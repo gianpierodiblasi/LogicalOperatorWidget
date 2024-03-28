@@ -32,6 +32,7 @@ TW.Runtime.Widgets.logicaloperator = function () {
       var output;
       switch (operation) {
         case "OR":
+        case "NOR":
           output = false;
           for (var operandN = 1; operandN <= numberOfOperands; operandN++) {
             var value = !!this.getProperty('operand' + operandN);
@@ -40,8 +41,12 @@ TW.Runtime.Widgets.logicaloperator = function () {
             }
             output |= value;
           }
+          if (operation === "NOR") {
+            output = !output;
+          }
           break;
         case "AND":
+        case "NAND":
           output = true;
           for (var operandN = 1; operandN <= numberOfOperands; operandN++) {
             var value = !!this.getProperty('operand' + operandN);
@@ -49,6 +54,26 @@ TW.Runtime.Widgets.logicaloperator = function () {
               console.log("LogicalOperator -> operand" + operandN + " = " + value);
             }
             output &= value;
+          }
+          if (operation === "NAND") {
+            output = !output;
+          }
+          break;
+        case "XOR":
+        case "NXOR":
+          var count = 0;
+          for (var operandN = 1; operandN <= numberOfOperands; operandN++) {
+            var value = !!this.getProperty('operand' + operandN);
+            if (debugMode) {
+              console.log("LogicalOperator -> operand" + operandN + " = " + value);
+            }
+            if (value) {
+              count++;
+            }
+          }
+          output = count === 1;
+          if (operation === "NXOR") {
+            output = !output;
           }
           break;
         case "NOT":

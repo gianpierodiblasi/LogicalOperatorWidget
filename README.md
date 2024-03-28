@@ -8,7 +8,7 @@ This extension provides a widget to perform logical operations.
 
 ## Properties
 - debugMode - BOOLEAN (default = false): if set to true it sends to the browser's JS console a set of information useful for debugging the widget
-- operation - STRING (default = 'OR'): The logical operation (options: OR, AND, NOT)
+- operation - STRING (default = 'OR'): The logical operation (options: OR, NOR, AND, NAND, XOR, NXOR, NOT)
 - numberOfOperands - INTEGER (default = 2): The operands number
 - operand, operand1, ..., operand\<numberOfOperands\> - BOOLEAN (no default value): dynamic properties based on the value of operation and numberOfOperands, they are the operands
 - output - BOOLEAN (default = false): The output
