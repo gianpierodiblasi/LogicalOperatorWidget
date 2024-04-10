@@ -8,11 +8,14 @@ This extension provides a widget to perform logical operations.
 
 ## Properties
 - debugMode - BOOLEAN (default = false): if set to true it sends to the browser's JS console a set of information useful for debugging the widget
-- operation - STRING (default = 'OR'): The logical operation (options: OR, NOR, AND, NAND, XOR, NXOR, NOT)
-- numberOfOperands - INTEGER (default = 2): The operands number
-- operand, operand1, ..., operand\<numberOfOperands\> - BOOLEAN (no default value): dynamic properties based on the value of operation and numberOfOperands, they are the operands
-- output - BOOLEAN (default = false): The output
+- operation - STRING (default = 'OR'): The logical operation (options: OR, NOR, AND, NAND, XOR, NXOR, NOT, CUSTOM; if operation is CUSTOM then a custom editor is available)
+- numberOfOperands - INTEGER (default = 2): The operands number (visible if and only if operation is not NOT and CUSTOM)
+- operand, operand1, ..., operand\<numberOfOperands\> - BOOLEAN (no default value): dynamic properties based on the value of operation and numberOfOperands, they are the operands (visible if and only if operation is not CUSTOM)
+- output - BOOLEAN (default = false): The output (visible if and only if operation is not CUSTOM)
+- customInputs - BOOLEAN (no default value): any input defined if operation is CUSTOM
+- customOutputs - BOOLEAN (no default value): any output defined if operation is CUSTOM
 - autoEvaluate - BOOLEAN (default = false): true to automatically evaluate output when a new operand value is set
+
 ## Services
 - Evaluate: service to execute the operation
 
