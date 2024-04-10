@@ -21,6 +21,9 @@ This extension provides a widget to perform logical operations.
 
 ## Events
 - Evaluated: event to notify the operation has been executed
+
+## Dependencies
+- dagre.js - [link](https://github.com/dagrejs/dagre)
   
 ## Donate
 If you would like to support the development of this and/or other extensions, consider making a [donation](https://www.paypal.com/donate/?business=HCDX9BAEYDF4C&no_recurring=0&currency_code=EUR).
