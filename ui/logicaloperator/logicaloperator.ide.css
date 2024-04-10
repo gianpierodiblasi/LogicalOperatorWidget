@@ -1,2 +1,16 @@
 .widget-logicaloperator {
 }
+
+.custom-editor-dialog {
+  height: 80% !important;
+}
+
+.LogicalCircuitUI_Toolbar button {
+  box-sizing: border-box;
+}
+.LogicalCircuitUI_Toolbar_TextContainer > input[type=text] {
+  height: 13px !important;
+}
+.LogicalCircuitUI_CanvasDnD {
+  z-index: 0;
+}

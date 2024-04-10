@@ -22,11 +22,15 @@ TW.Runtime.Widgets.logicaloperator = function () {
       var operation = thisWidget.getProperty('operation');
       var debugMode = thisWidget.getProperty('debugMode');
       var numberOfOperands = thisWidget.getProperty('numberOfOperands');
+      var customJSON = thisWidget.getProperty('customJSON');
+      var customExpressions = thisWidget.getProperty('customExpressions');
 
       if (debugMode) {
         console.log("LogicalOperator -> Start");
         console.log("LogicalOperator -> operation = " + operation);
         console.log("LogicalOperator -> numberOfOperands = " + numberOfOperands);
+        console.log("LogicalOperator -> customJSON = " + customJSON);
+        console.log("LogicalOperator -> customExpressions = " + customExpressions);
       }
 
       var output;
@@ -83,26 +87,55 @@ TW.Runtime.Widgets.logicaloperator = function () {
           }
           output = !value;
           break;
+        case "CUSTOM":
+          customJSON = JSON.parse(customJSON);
+          customExpressions = JSON.parse(customExpressions);
+          var outputs = {};
+          var toEval = Object.keys(customJSON).filter(name => customJSON[name].type === "IN").reduce((acc, property) => acc + "var " + property + " = " + thisWidget.getProperty(property) + ";\n", "");
+          toEval += Object.keys(customJSON).filter(name => customJSON[name].type === "OUT").reduce((acc, property) => acc + "outputs['" + property + "'] = " + customExpressions[property] + ";\n", "");
+          eval(toEval);
+
+          Object.keys(outputs).forEach(output => {
+            if (debugMode) {
+              console.log("LogicalOperator -> " + output + " = " + outputs[output]);
+              console.log("LogicalOperator -> Stop");
+            }
+            thisWidget.setProperty(output, outputs[output]);
+          });
+          break;
       }
 
-      output = !!output;
-      if (debugMode) {
-        console.log("LogicalOperator -> output = " + output);
-        console.log("LogicalOperator -> Stop");
+      if (operation !== "CUSTOM") {
+        output = !!output;
+        if (debugMode) {
+          console.log("LogicalOperator -> output = " + output);
+          console.log("LogicalOperator -> Stop");
+        }
+
+        thisWidget.setProperty("output", output);
       }
 
-      thisWidget.setProperty("output", output);
       thisWidget.jqElement.triggerHandler("Evaluated");
     }
   };
 
   this.updateProperty = function (updatePropertyInfo) {
+    var invoke = false;
     if (updatePropertyInfo.TargetProperty.startsWith("operand")) {
       this.setProperty(updatePropertyInfo.TargetProperty, updatePropertyInfo.RawSinglePropertyValue);
-
-      if (thisWidget.getProperty("autoEvaluate")) {
-        this.serviceInvoked("Evaluate");
+      invoke = true;
+    } else if (thisWidget.getProperty('operation') === "CUSTOM") {
+      var customJSON = JSON.parse(thisWidget.getProperty("customJSON"));
+      for (var key in customJSON) {
+        if (customJSON[key].type === "IN" && updatePropertyInfo.TargetProperty === key) {
+          this.setProperty(updatePropertyInfo.TargetProperty, updatePropertyInfo.RawSinglePropertyValue);
+          invoke = true;
+        }
       }
+    }
+
+    if (invoke && thisWidget.getProperty("autoEvaluate")) {
+      this.serviceInvoked("Evaluate");
     }
   };
 };
